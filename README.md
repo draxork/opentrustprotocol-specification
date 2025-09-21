@@ -1,8 +1,8 @@
 # OpenTrust Protocol Specification
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/opentrustprotocol/specification)
-[![Spec Status](https://img.shields.io/badge/spec-stable-green.svg)](https://opentrustprotocol.com)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/draxork/opentrustprotocol-specification)
+[![Spec Status](https://img.shields.io/badge/spec-stable-green.svg)](https://github.com/draxork/opentrustprotocol-specification)
 
 ## 📋 Overview
 
@@ -14,6 +14,7 @@ The OpenTrust Protocol provides a standardized way to:
 - **Measure trust** using Truth (T), Indeterminacy (I), and Falsity (F) components
 - **Fuse multiple judgments** with conflict-aware algorithms
 - **Maintain provenance chains** for complete auditability
+- **Transform data** using OTP Mappers (Numerical, Categorical, Boolean)
 - **Ensure interoperability** across different implementations
 
 ## 📁 Repository Structure
@@ -98,18 +99,85 @@ This specification is released under the MIT License. See [LICENSE](LICENSE) for
 
 ## 🔗 Links
 
-- **Website**: https://opentrustprotocol.com
-- **Documentation**: https://docs.opentrustprotocol.com
-- **SDKs**: https://github.com/opentrustprotocol/sdks
-- **Community**: https://discord.gg/opentrustprotocol
+- **Python SDK**: https://github.com/draxork/opentrustprotocol-py
+- **JavaScript SDK**: https://github.com/draxork/opentrustprotocol-js
+- **Rust SDK**: https://github.com/draxork/opentrustprotocol-rs
+- **PyPI Package**: https://pypi.org/project/opentrustprotocol/
+- **npm Package**: https://www.npmjs.com/package/opentrustprotocol
+- **Crates.io Package**: https://crates.io/crates/opentrustprotocol
 
 ## 📊 Status
 
-| Component | Status | Version |
-|-----------|--------|---------|
-| Core Spec | ✅ Stable | 1.0.0 |
-| Test Vectors | ✅ Stable | 1.0.0 |
-| API Spec | ✅ Stable | 1.0.0 |
-| Python SDK | ✅ Stable | 1.0.2 |
-| JavaScript SDK | 🚧 In Progress | - |
-| Rust SDK | 📋 Planned | - |
+| Component | Status | Version | Package Manager |
+|-----------|--------|---------|-----------------|
+| Core Spec | ✅ Stable | 2.0.0 | - |
+| Test Vectors | ✅ Stable | 2.0.0 | - |
+| API Spec | ✅ Stable | 2.0.0 | - |
+| Python SDK | ✅ Published | 1.0.6 | [PyPI](https://pypi.org/project/opentrustprotocol/) |
+| JavaScript SDK | ✅ Published | 1.0.3 | [npm](https://www.npmjs.com/package/opentrustprotocol) |
+| Rust SDK | ✅ Published | 0.2.0 | [crates.io](https://crates.io/crates/opentrustprotocol) |
+
+## 🆕 OTP v2.0 Features
+
+### **OTP Mapper System**
+- **NumericalMapper**: Continuous data interpolation (DeFi health factors, IoT sensors)
+- **CategoricalMapper**: Discrete category mapping (KYC status, product categories)
+- **BooleanMapper**: Boolean value transformation (SSL certificates, feature flags)
+
+### **Enhanced Fusion Operators**
+- **Conflict-Aware Weighted Average**: Primary fusion operator with conflict detection
+- **Optimistic Fusion**: Maximum truth, minimum falsity
+- **Pessimistic Fusion**: Minimum truth, maximum falsity
+
+### **Provenance Chain**
+- **Complete Audit Trail**: Every transformation tracked
+- **Immutable History**: Cannot be modified after creation
+- **Source Attribution**: Full traceability to original data
+
+## 🌐 Ecosystem
+
+The OpenTrust Protocol is now available across multiple platforms:
+
+| Platform | Package | Version | Status |
+|----------|---------|---------|--------|
+| **Python** | `opentrustprotocol` | 1.0.6 | ✅ Published |
+| **JavaScript** | `opentrustprotocol` | 1.0.3 | ✅ Published |
+| **Rust** | `opentrustprotocol` | 0.2.0 | ✅ Published |
+
+## 📈 Installation
+
+```bash
+# Python
+pip install opentrustprotocol
+
+# JavaScript/Node.js
+npm install opentrustprotocol
+
+# Rust
+cargo add opentrustprotocol
+```
+
+## 🎯 Use Cases
+
+- **🔗 Blockchain & DeFi**: Risk assessment, KYC/AML, oracle reliability
+- **🤖 AI & Machine Learning**: Uncertainty quantification, model validation
+- **🌐 IoT & Sensors**: Sensor reliability, data fusion, anomaly detection
+- **🏭 Supply Chain**: Product tracking, quality control, compliance
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/draxork/opentrustprotocol-specification/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/draxork/opentrustprotocol-specification/discussions)
+- **Documentation**: [GitHub Wiki](https://github.com/draxork/opentrustprotocol-specification/wiki)
+
+---
+
+<div align="center">
+
+**🌟 Star this repository if you find it useful!**
+
+[![GitHub stars](https://img.shields.io/github/stars/draxork/opentrustprotocol-specification?style=social)](https://github.com/draxork/opentrustprotocol-specification)
+
+**Made with ❤️ by the OpenTrust Protocol Team**
+
+</div>
