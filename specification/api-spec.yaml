@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: OpenTrust Protocol API
+  description: |
+    The OpenTrust Protocol (OTP) provides a standardized way to measure and audit trust
+    using neutrosophic judgments with Truth (T), Indeterminacy (I), and Falsity (F) components.
+  version: 1.0.0
+  contact:
+    name: OpenTrust Protocol Team
+    email: contact@opentrustprotocol.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.opentrustprotocol.com/v1
+    description: Production server
+  - url: https://staging-api.opentrustprotocol.com/v1
+    description: Staging server
+
+paths:
+  /judgments:
+    post:
+      summary: Create a new neutrosophic judgment
+      description: Creates a new neutrosophic judgment with T, I, F values and provenance chain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NeutrosophicJudgment'
+      responses:
+        '201':
+          description: Judgment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeutrosophicJudgment'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /fusion/conflict-aware:
+    post:
+      summary: Perform conflict-aware weighted fusion
+      description: Fuses multiple judgments using conflict-aware weighted average
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                judgments:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/NeutrosophicJudgment'
+                  minItems: 1
+                weights:
+                  type: array
+                  items:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                  minItems: 1
+              required: [judgments, weights]
+      responses:
+        '200':
+          description: Fusion completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeutrosophicJudgment'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /fusion/optimistic:
+    post:
+      summary: Perform optimistic fusion
+      description: Fuses judgments taking maximum T and minimum F
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                judgments:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/NeutrosophicJudgment'
+                  minItems: 1
+              required: [judgments]
+      responses:
+        '200':
+          description: Fusion completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeutrosophicJudgment'
+
+  /fusion/pessimistic:
+    post:
+      summary: Perform pessimistic fusion
+      description: Fuses judgments taking minimum T and maximum F
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                judgments:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/NeutrosophicJudgment'
+                  minItems: 1
+              required: [judgments]
+      responses:
+        '200':
+          description: Fusion completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeutrosophicJudgment'
+
+components:
+  schemas:
+    NeutrosophicJudgment:
+      type: object
+      required: [T, I, F, provenance_chain]
+      properties:
+        T:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Degree of Truth
+        I:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Degree of Indeterminacy
+        F:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Degree of Falsity
+        provenance_chain:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProvenanceEntry'
+          description: Immutable audit trail
+      example:
+        T: 0.85
+        I: 0.15
+        F: 0.0
+        provenance_chain:
+          - source_id: "model-text-bison-v1.2"
+            timestamp: "2025-09-20T20:30:00Z"
+            description: "AI model confidence score"
+
+    ProvenanceEntry:
+      type: object
+      required: [source_id, timestamp]
+      properties:
+        source_id:
+          type: string
+          description: Unique identifier for the source
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp
+        description:
+          type: string
+          description: Human-readable description
+        metadata:
+          type: object
+          description: Additional metadata
+          additionalProperties: true
+
+    Error:
+      type: object
+      required: [error, message]
+      properties:
+        error:
+          type: string
+          description: Error type
+        message:
+          type: string
+          description: Human-readable error message
+        details:
+          type: object
+          description: Additional error details
