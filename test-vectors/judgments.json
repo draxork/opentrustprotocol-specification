@@ -1,0 +1,273 @@
+{
+  "version": "1.0.0",
+  "description": "OpenTrust Protocol - Judgment Creation Test Vectors",
+  "test_vectors": [
+    {
+      "name": "valid_basic_judgment",
+      "description": "Basic valid judgment with minimal provenance",
+      "input": {
+        "T": 0.8,
+        "I": 0.2,
+        "F": 0.0,
+        "provenance_chain": [
+          {
+            "source_id": "test-source",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Test judgment creation"
+          }
+        ]
+      },
+      "expected_valid": true,
+      "expected_error": null
+    },
+    {
+      "name": "valid_full_judgment",
+      "description": "Valid judgment with complete provenance and metadata",
+      "input": {
+        "T": 0.75,
+        "I": 0.15,
+        "F": 0.1,
+        "provenance_chain": [
+          {
+            "source_id": "ai-model-gpt4",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "AI model confidence assessment",
+            "metadata": {
+              "model_version": "4.0",
+              "confidence_threshold": 0.7,
+              "temperature": 0.1
+            }
+          }
+        ]
+      },
+      "expected_valid": true,
+      "expected_error": null
+    },
+    {
+      "name": "valid_boundary_values",
+      "description": "Valid judgment with boundary values (T+I+F = 1.0)",
+      "input": {
+        "T": 1.0,
+        "I": 0.0,
+        "F": 0.0,
+        "provenance_chain": [
+          {
+            "source_id": "boundary-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Boundary value test"
+          }
+        ]
+      },
+      "expected_valid": true,
+      "expected_error": null
+    },
+    {
+      "name": "invalid_conservation_violation",
+      "description": "Invalid judgment violating conservation constraint",
+      "input": {
+        "T": 0.8,
+        "I": 0.3,
+        "F": 0.2,
+        "provenance_chain": [
+          {
+            "source_id": "invalid-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Invalid conservation test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "Conservation constraint violated: T + I + F > 1.0"
+    },
+    {
+      "name": "invalid_negative_t",
+      "description": "Invalid judgment with negative T value",
+      "input": {
+        "T": -0.1,
+        "I": 0.5,
+        "F": 0.3,
+        "provenance_chain": [
+          {
+            "source_id": "negative-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Negative value test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "T value must be between 0 and 1"
+    },
+    {
+      "name": "invalid_negative_i",
+      "description": "Invalid judgment with negative I value",
+      "input": {
+        "T": 0.5,
+        "I": -0.1,
+        "F": 0.3,
+        "provenance_chain": [
+          {
+            "source_id": "negative-i-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Negative I value test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "I value must be between 0 and 1"
+    },
+    {
+      "name": "invalid_negative_f",
+      "description": "Invalid judgment with negative F value",
+      "input": {
+        "T": 0.5,
+        "I": 0.3,
+        "F": -0.1,
+        "provenance_chain": [
+          {
+            "source_id": "negative-f-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Negative F value test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "F value must be between 0 and 1"
+    },
+    {
+      "name": "invalid_exceeds_one_t",
+      "description": "Invalid judgment with T > 1.0",
+      "input": {
+        "T": 1.1,
+        "I": 0.0,
+        "F": 0.0,
+        "provenance_chain": [
+          {
+            "source_id": "exceeds-one-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "T exceeds 1.0 test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "T value must be between 0 and 1"
+    },
+    {
+      "name": "invalid_exceeds_one_i",
+      "description": "Invalid judgment with I > 1.0",
+      "input": {
+        "T": 0.0,
+        "I": 1.1,
+        "F": 0.0,
+        "provenance_chain": [
+          {
+            "source_id": "exceeds-one-i-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "I exceeds 1.0 test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "I value must be between 0 and 1"
+    },
+    {
+      "name": "invalid_exceeds_one_f",
+      "description": "Invalid judgment with F > 1.0",
+      "input": {
+        "T": 0.0,
+        "I": 0.0,
+        "F": 1.1,
+        "provenance_chain": [
+          {
+            "source_id": "exceeds-one-f-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "F exceeds 1.0 test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "F value must be between 0 and 1"
+    },
+    {
+      "name": "invalid_empty_provenance",
+      "description": "Invalid judgment with empty provenance chain",
+      "input": {
+        "T": 0.8,
+        "I": 0.2,
+        "F": 0.0,
+        "provenance_chain": []
+      },
+      "expected_valid": false,
+      "expected_error": "Provenance chain cannot be empty"
+    },
+    {
+      "name": "invalid_missing_source_id",
+      "description": "Invalid judgment with missing source_id in provenance",
+      "input": {
+        "T": 0.8,
+        "I": 0.2,
+        "F": 0.0,
+        "provenance_chain": [
+          {
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Missing source_id test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "Provenance entry must have source_id"
+    },
+    {
+      "name": "invalid_missing_timestamp",
+      "description": "Invalid judgment with missing timestamp in provenance",
+      "input": {
+        "T": 0.8,
+        "I": 0.2,
+        "F": 0.0,
+        "provenance_chain": [
+          {
+            "source_id": "missing-timestamp-test",
+            "description": "Missing timestamp test"
+          }
+        ]
+      },
+      "expected_valid": false,
+      "expected_error": "Provenance entry must have timestamp"
+    },
+    {
+      "name": "valid_zero_values",
+      "description": "Valid judgment with zero values",
+      "input": {
+        "T": 0.0,
+        "I": 1.0,
+        "F": 0.0,
+        "provenance_chain": [
+          {
+            "source_id": "zero-values-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Zero values test"
+          }
+        ]
+      },
+      "expected_valid": true,
+      "expected_error": null
+    },
+    {
+      "name": "valid_complete_uncertainty",
+      "description": "Valid judgment representing complete uncertainty",
+      "input": {
+        "T": 0.0,
+        "I": 1.0,
+        "F": 0.0,
+        "provenance_chain": [
+          {
+            "source_id": "uncertainty-test",
+            "timestamp": "2025-09-20T20:30:00Z",
+            "description": "Complete uncertainty test"
+          }
+        ]
+      },
+      "expected_valid": true,
+      "expected_error": null
+    }
+  ]
+}
