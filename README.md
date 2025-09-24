@@ -102,8 +102,10 @@ This specification is released under the MIT License. See [LICENSE](LICENSE) for
 - **Python SDK**: https://github.com/draxork/opentrustprotocol-py
 - **JavaScript SDK**: https://github.com/draxork/opentrustprotocol-js
 - **Rust SDK**: https://github.com/draxork/opentrustprotocol-rs
+- **Witness SDK**: https://github.com/draxork/opentrustprotocol-witness
 - **PyPI Package**: https://pypi.org/project/opentrustprotocol/
 - **npm Package**: https://www.npmjs.com/package/opentrustprotocol
+- **npm Witness Package**: https://www.npmjs.com/package/opentrustprotocol-witness
 - **Crates.io Package**: https://crates.io/crates/opentrustprotocol
 
 ## 📊 Status
@@ -113,9 +115,10 @@ This specification is released under the MIT License. See [LICENSE](LICENSE) for
 | Core Spec | ✅ Stable | 2.0.0 | - |
 | Test Vectors | ✅ Stable | 2.0.0 | - |
 | API Spec | ✅ Stable | 2.0.0 | - |
-| Python SDK | ✅ Published | 1.0.6 | [PyPI](https://pypi.org/project/opentrustprotocol/) |
-| JavaScript SDK | ✅ Published | 1.0.3 | [npm](https://www.npmjs.com/package/opentrustprotocol) |
-| Rust SDK | ✅ Published | 0.2.0 | [crates.io](https://crates.io/crates/opentrustprotocol) |
+| Python SDK | ✅ Published | 2.0.0 | [PyPI](https://pypi.org/project/opentrustprotocol/) |
+| JavaScript SDK | ✅ Published | 2.0.0 | [npm](https://www.npmjs.com/package/opentrustprotocol) |
+| Rust SDK | ✅ Published | 0.3.0 | [crates.io](https://crates.io/crates/opentrustprotocol) |
+| Witness SDK | ✅ Published | 4.0.4 | [npm](https://www.npmjs.com/package/opentrustprotocol-witness) |
 
 ## 🆕 OTP v2.0 Features
 
@@ -134,15 +137,23 @@ This specification is released under the MIT License. See [LICENSE](LICENSE) for
 - **Immutable History**: Cannot be modified after creation
 - **Source Attribution**: Full traceability to original data
 
+### **Witness System (v4.0.4)**
+- **Performance Analytics**: Real-time outcome tracking and performance measurement
+- **Machine Learning Integration**: Advanced predictive analytics and trend analysis
+- **Multi-Witness Dashboard**: Comprehensive monitoring and comparison tools
+- **REST API & WebSocket**: Full programmatic access to witness data
+- **PostgreSQL Storage**: Scalable persistent storage for judgment pairs
+
 ## 🌐 Ecosystem
 
 The OpenTrust Protocol is now available across multiple platforms:
 
 | Platform | Package | Version | Status |
 |----------|---------|---------|--------|
-| **Python** | `opentrustprotocol` | 1.0.6 | ✅ Published |
-| **JavaScript** | `opentrustprotocol` | 1.0.3 | ✅ Published |
-| **Rust** | `opentrustprotocol` | 0.2.0 | ✅ Published |
+| **Python** | `opentrustprotocol` | 2.0.0 | ✅ Published |
+| **JavaScript** | `opentrustprotocol` | 2.0.0 | ✅ Published |
+| **Rust** | `opentrustprotocol` | 0.3.0 | ✅ Published |
+| **Witness** | `opentrustprotocol-witness` | 4.0.4 | ✅ Published |
 
 ## 📈 Installation
 
@@ -155,14 +166,19 @@ npm install opentrustprotocol
 
 # Rust
 cargo add opentrustprotocol
+
+# Witness (Performance Analytics)
+npm install opentrustprotocol-witness
 ```
 
 ## 🎯 Use Cases
 
-- **🔗 Blockchain & DeFi**: Risk assessment, KYC/AML, oracle reliability
+- **🔗 Blockchain & DeFi**: Risk assessment, KYC/AML, witness reliability
 - **🤖 AI & Machine Learning**: Uncertainty quantification, model validation
 - **🌐 IoT & Sensors**: Sensor reliability, data fusion, anomaly detection
 - **🏭 Supply Chain**: Product tracking, quality control, compliance
+- **📊 Performance Monitoring**: Real-time analytics, outcome tracking, witness comparison
+- **🔮 Predictive Analytics**: ML-powered forecasting, trend analysis, alert generation
 
 ## 📞 Support
 
